@@ -65,15 +65,15 @@ public class NewBuildWindow extends JFrame {
 		JPanel promptPane = new JPanel();
 		promptPane.setLayout(new BoxLayout(promptPane,BoxLayout.PAGE_AXIS));
 		promptPane.add(titlePrompt);
-		promptPane.add(Box.createRigidArea(new Dimension(65, 65)));
+		promptPane.add(Box.createRigidArea(new Dimension(100, 100)));
 		promptPane.add(heroPrompt);
-		promptPane.add(Box.createRigidArea(new Dimension(65, 65)));
+		promptPane.add(Box.createRigidArea(new Dimension(100, 100)));
 		promptPane.add(userPrompt);
 		contents.add(promptPane, BorderLayout.WEST);
 		JPanel fieldPane = new JPanel();
 		fieldPane.setLayout(new BoxLayout(fieldPane, BoxLayout.PAGE_AXIS));
 		fieldPane.add(titleField);
-		fieldPane.add(Box.createRigidArea(new Dimension(50, 50)));
+		fieldPane.add(Box.createRigidArea(new Dimension(100, 100)));
 		fieldPane.add(heroField);
 		fieldPane.add(Box.createRigidArea(new Dimension(50, 50)));
 		fieldPane.add(userField);

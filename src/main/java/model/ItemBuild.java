@@ -28,11 +28,11 @@ public class ItemBuild {
 	 * @param hero
 	 * @param title
 	 */
-	public ItemBuild(String author, String hero, String title) {
+	public ItemBuild(final String author, final String hero, String title) {
 		this.author = author;
 		this.hero = new Hero(hero);
 		this.title = title;
-		headlines = new ArrayList<ItemHeadline>();
+		headlines = new ArrayList<>();
 	}
 
 	/**
