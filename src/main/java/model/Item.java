@@ -1,7 +1,14 @@
 /**
- * 
+ *
  */
 package model;
+
+import com.vaadin.server.Resource;
+import com.vaadin.ui.Image;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.extern.apachecommons.CommonsLog;
+import lombok.extern.slf4j.Slf4j;
 
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -12,72 +19,51 @@ import javax.imageio.ImageIO;
 /**
  * @author Daniel Draper
  * @version 1.0
- * This class represents an item that can be put into one of the guides.
- *
+ *          This class represents an item that can be put into one of the guides.
  */
-public class Item {
-	private String name;
-	private String formattedName;
-	private BufferedImage image;
-	
-	/**
-	 * Creates an Item with the name and loads its
-	 * @param name
-	 */
-	public Item(String name) {
-		this.name = name;
-		formattedName = "\"item_" + name.replace(" ", "_") + "\"";
-		try {
-			image = ImageIO.read(new File("res/images/" + name.replace(" ", "_") + "_lg" + ".png"));
-		}
-		catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
-	
-	/**
-	 * @return the name
-	 */
-	public String getName() {
-		return name;
-	}
+@Slf4j
+public class Item implements Comparable  {
+    @Getter
+    @Setter
+    private String name;
+    @Getter
+    @Setter
+    private String formattedName;
+    @Getter
+    @Setter
+    private Image image;
 
-	/**
-	 * @return the formattedName
-	 */
-	public String getFormattedName() {
-		//System.out.println(formattedName);
-		return formattedName;
-	}
+    /**
+     * Creates an Item with the name and loads its image.
+     *
+     * @param name the name for the item.
+     * @param file the file for the item's image.
+     */
+    public Item(final String name, final File file) {
+        this.name = name;
+        this.formattedName = "\"item_" + name.replace(" ", "_") + "\"";
+        if (file != null) {
+            image = new Image(file.getAbsolutePath());
 
-	/**
-	 * @return the image
-	 */
-	public BufferedImage getImage() {
-		return image;
-	}
+        }
 
-	/**
-	 * @param name the name to set
-	 */
-	public void setName(String name) {
-		this.name = name;
-	}
+    }
 
-	/**
-	 * @param formattedName the formattedName to set
-	 */
-	public void setFormattedName(String formattedName) {
-		this.formattedName = formattedName;
-	}
+    /**
+     * Creates an Item without an associated File.
+     * @param name the name for the item
+     */
+    public Item(final String name) {
+        this(name, null);
+    }
 
-	/**
-	 * @param image the image to set
-	 */
-	public void setImage(BufferedImage image) {
-		this.image = image;
-	}
-	
-
-	
+    @Override
+    public int compareTo(final Object o) {
+        if (!(o instanceof Item)) {
+            return -1;
+        }
+        else {
+            return name.compareTo(((Item) o).getName());
+        }
+    }
 }

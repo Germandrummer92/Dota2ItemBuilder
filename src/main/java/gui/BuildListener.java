@@ -21,9 +21,6 @@ public class BuildListener implements MouseListener {
 	public BuildListener(WorkingBuildPanel panel) {
 		build = panel;
 	}
-	/* (non-Javadoc)
-	 * @see java.awt.event.MouseListener#mouseClicked(java.awt.event.MouseEvent)
-	 */
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		if (e.getClickCount() == 2) {
